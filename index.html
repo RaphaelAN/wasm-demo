@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>WebAssembly example</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="wasm_functions.js"></script>
+	<script src="js_functions.js"></script>
+    <script>
+		function test(func, field_id, n){
+			let start = performance.now();
+			ret = func(n);
+			console.log(ret);
+			let end = performance.now();
+			let time = end - start;
+			var r_time = document.getElementById(field_id);
+			r_time.innerText = time;
+		}
+		function webAssembly() {
+			test(Module._factors, "factoriation_wasm", 91823987424);
+		}
+		function javaScript() {
+			test(primes, "factoriation_js", 91823987424);
+			
+		}
+		function run_test() {
+			webAssembly();
+			javaScript();
+		}
+	</script>
+  </head>
+  
+  <body>
+
+    <h1 style="color: white">WebAssembly in C</h1>
+    <div style="display: inline-block;">
+        <button id="run_button" onclick="run_test()">Run Test</button>
+    </div>
+ 	<table class="darkTable">
+ 		<thead>
+  			<tr>
+  				<th>Function</th>
+  				<th>JS (ms)</th>
+  				<th>WASM (ms)</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			<tr>
+  				<td>Factorization</td>
+  				<td id="factoriation_js">0.0</td>
+  				<td id="factoriation_wasm">0.0</td>
+  			</tr>
+  			<tr>
+  				<td>Factorial</td>
+  				<td id="factorial_js">0.0</td>
+  				<td id="factorial_wasm">0.0</td>
+  			</tr>
+  			<tr>
+  				<td>Collatz</td>
+  				<td id="collatz_js">0.0</td>
+  				<td id="collatz_wasm">0.0</td>
+  			</tr>
+			<tr>
+  				<td>Total</td>
+  				<td id="total_js">0.0</td>
+  				<td id="total_wasm">0.0</td>
+  			</tr>
+  		</tbody>
+  	</table>
+  </body>
+</html> 
