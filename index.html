@@ -11,7 +11,7 @@
 		function test(func, field_id, n){
 			let start = performance.now();
 			ret = func(n);
-			console.log(ret);
+			console.log(field_id + ": " + ret);
 			let end = performance.now();
 			let time = end - start;
 			var r_time = document.getElementById(field_id);
@@ -19,14 +19,17 @@
 		}
 		function webAssembly() {
 			test(Module._factors, "factoriation_wasm", 91823987424);
+			test(Module._collatz, "collatz_wasm",  77031);
+			test(Module._newton_root, "newtonRoot_wasm",  77031098123);
 		}
 		function javaScript() {
 			test(primes, "factoriation_js", 91823987424);
-			
+			test(collatz, "collatz_js",  77031);
+			test(collatz, "newtonRoot_js", 77031098123);
 		}
 		function run_test() {
-			webAssembly();
-			javaScript();
+			test(webAssembly, "total_wasm");
+			test(javaScript, "total_js");
 		}
 	</script>
   </head>
@@ -52,9 +55,9 @@
   				<td id="factoriation_wasm">0.0</td>
   			</tr>
   			<tr>
-  				<td>Factorial</td>
-  				<td id="factorial_js">0.0</td>
-  				<td id="factorial_wasm">0.0</td>
+  				<td>Newton Root</td>
+  				<td id="newtonRoot_js">0.0</td>
+  				<td id="newtonRoot_wasm">0.0</td>
   			</tr>
   			<tr>
   				<td>Collatz</td>

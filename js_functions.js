@@ -14,21 +14,35 @@ function primes(number){
     }
 	return counter;
 }
-
-function factorial(n) {
-    if(n <= 1) {
-		return n;
-    }
-	return n * factorial(n-1);
+function newton_root(number) {
+	let root = 0;	
+	for(let i = 0; i < 100000; i++) {
+		let guess = number;
+		let precision = 0.0001;
+		let count = 0;
+		while(1) {
+			count += 1;
+			root = 0.5 * (guess + (number/guess));
+			if(abs(root-guess) < precision) {
+				break;
+			}
+			guess = root;
+		}
+	}
+	return root;
 }
-function collatz(n){
-    let steps = 0;
-    while(n != 1){
-		steps++;
-		if(n % 2 == 1){
-			n = n*3 + 1;
-		} else {
-			n = n/2;
+
+function collatz(number){
+    let steps, n = 0;
+	for(let i = 0; i < 100000; i++){
+		n = number
+    	while(n != 1){
+			steps++;
+			if(n % 2 == 1){
+				n = n*3 + 1;
+			} else {
+				n = n/2;
+			}
 		}
 	}
 	return steps;

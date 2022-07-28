@@ -1785,7 +1785,7 @@ var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__w
 var _factors = Module["_factors"] = createExportWrapper("factors");
 
 /** @type {function(...*):?} */
-var _factorial = Module["_factorial"] = createExportWrapper("factorial");
+var _newton_root = Module["_newton_root"] = createExportWrapper("newton_root");
 
 /** @type {function(...*):?} */
 var _collatz = Module["_collatz"] = createExportWrapper("collatz");
